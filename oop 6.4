@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+
+class Employee       //class named Employee created
+{
+    private:
+    char name[30], department[30];
+    int id, basicsalary, gross;
+    float DA, HRA, TA;
+    float *D, *H, *T;
+    
+    public:
+    void readData();
+    Employee(float DA, float HRA, float TA)     //Dynamic constructors with parameters
+    {
+        D=new float;
+        *D=DA;
+        H=new float;
+        *H=HRA;
+        T=new float;
+        *T=TA;
+
+    }
+    void displayData()                             //for displaying the employee data
+    {
+        cout<<"Name: "<<name<<endl;
+        cout<<"department: "<<department<<endl;
+        cout<<"Employee ID: "<<id<<endl;
+        cout<<"Your Basic Salary is: "<<basicsalary<<endl;
+        gross=basicsalary+((*D)*basicsalary)+((*H)*basicsalary)+((*T)*basicsalary); //calculation for gross salary
+        cout<<"Your Gross salary is: "<<gross;
+    }
+    
+};
+
+void Employee::readData()                            //member function for reading the data given by the user
+{
+    cout<<"Enter the name of the employee: "<<endl;
+    cin>>name;
+    cout<<"Enter the department of the employee: "<<endl;
+    cin>>department;
+    cout<<"Enter the Employee ID: "<<endl;
+    cin>>id;
+    cout<<"Enter the basic salary of the employee: "<<endl;
+    cin>>basicsalary;
+}
+
+
+
+int main()
+{
+    Employee o(0.50, 0.30, 0.10);                    //object o created
+    o.readData();
+    o.displayData();
+    return 0;
+}
