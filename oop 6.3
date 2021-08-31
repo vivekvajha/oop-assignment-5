@@ -1,0 +1,58 @@
+#include <iostream>
+using namespace std;
+
+class Employee                       //class named Employee created
+{
+    private:
+    char name[30], department[30];
+    int id, basicsalary, gross;
+    float DA, HRA, TA, da, hra, ta;
+    
+    public:
+    void readData();
+    Employee(float da, float hra, float ta)  //parameterized constructor
+    {
+        DA=da;
+        HRA=hra;
+        TA=ta;
+    }
+    Employee(Employee &oldData)      //copy constructor
+    {
+        da=oldData.DA;
+        hra=oldData.HRA;
+        ta=oldData.TA;
+    }
+    void displayData()                                 //for displaying the employee data
+    {
+        cout<<"Name: "<<name<<endl;
+        cout<<"department: "<<department<<endl;
+        cout<<"Employee ID: "<<id<<endl;
+        cout<<"Your Basic Salary is: "<<basicsalary<<endl;
+        gross=basicsalary+(da*basicsalary)+(hra*basicsalary)+(ta*basicsalary);  //calculation for gross salary
+        cout<<"Your Gross salary is: "<<gross;
+    }
+    
+};
+
+void Employee::readData()                              //member function created for reading the data given by the user
+{
+    cout<<"Enter the name of the employee: "<<endl;
+    cin>>name;
+    cout<<"Enter the department of the employee: "<<endl;
+    cin>>department;
+    cout<<"Enter the Employee ID: "<<endl;
+    cin>>id;
+    cout<<"Enter the basic salary of the employee: "<<endl;
+    cin>>basicsalary;
+}
+
+
+
+int main()
+{
+    Employee o(0.50, 0.30, 0.10);
+    Employee o1(o);  //calling the copy constructor
+    o1.readData();
+    o1.displayData();
+    return 0;
+}
